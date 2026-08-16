@@ -55,7 +55,7 @@ Cleaned & Transformed
 **Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · Window Functions**
 
 ## Project Structure
-
+```text
 sql-data-warehouse-project/
 │
 ├── datasets/
@@ -82,6 +82,7 @@ sql-data-warehouse-project/
 │       └── quality_checks.sql
 │
 └── README.md
+```
 
 ## Next Steps
 
