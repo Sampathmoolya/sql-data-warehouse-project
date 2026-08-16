@@ -17,43 +17,72 @@ Cleaned & Transformed
  Business Ready
         ↓
    Analytics / BI
+```
 
-**## What Has Been Built**
+## What Has Been Built
 
-Bronze Layer
-Created Bronze schema and source tables for CRM and ERP data.
-Loaded CSV files using BULK INSERT.
-Implemented full-refresh loading using TRUNCATE.
-Created bronze.load_bronze stored procedure.
-Added table-level and batch-level execution time tracking.
-Added TRY...CATCH error handling.
-Silver Layer
-Created Silver schema and tables.
-Created silver.load_silver stored procedure.
-Cleaned and standardized source data using TRIM(), CASE, and ISNULL().
-Removed duplicate customer records using ROW_NUMBER().
-Handled NULL and invalid values.
-Converted YYYYMMDD values to DATE.
-Validated and corrected Sales, Quantity, and Price.
-Generated product end dates using LEAD().
-Standardized gender, marital status, product line, and country values.
-Data Quality
+### Bronze Layer
 
-Implemented validation checks for:
+- Created Bronze schema and source tables for CRM and ERP data.
+- Loaded CSV files using `BULK INSERT`.
+- Implemented full-refresh loading using `TRUNCATE`.
+- Created `bronze.load_bronze` stored procedure.
+- Added table-level and batch-level execution time tracking.
+- Added `TRY...CATCH` error handling.
 
-NULL and duplicate primary keys
-Unwanted spaces
-Data standardization and consistency
-Invalid / negative numeric values
-Invalid date ranges
-Invalid order dates
-Sales = Quantity × Price consistency
-Source & Warehouse Tables
+### Silver Layer
 
-CRM: crm_cust_info · crm_prd_info · crm_sales_details
+- Created Silver schema and tables.
+- Created `silver.load_silver` stored procedure.
+- Cleaned and standardized source data.
+- Removed duplicates using `ROW_NUMBER()`.
+- Handled NULL and invalid values.
+- Converted `YYYYMMDD` values to `DATE`.
+- Validated Sales, Quantity, and Price.
+- Generated product end dates using `LEAD()`.
 
-ERP: erp_cust_az12 · erp_loc_a101 · erp_px_cat_g1v2
+### Data Quality
 
-Technologies
+- NULL and duplicate primary-key checks
+- Unwanted-space checks
+- Data standardization checks
+- Invalid numeric-value checks
+- Invalid date-range checks
+- Sales = Quantity × Price validation
 
-Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · Window Functions
+## Technologies
+
+**Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · Window Functions**
+
+## Project Structure
+
+sql-data-warehouse-project/
+│
+├── datasets/
+│   ├── source_crm/
+│   │   ├── cust_info.csv
+│   │   ├── prd_info.csv
+│   │   └── sales_details.csv
+│   │
+│   └── source_erp/
+│       ├── CUST_AZ12.csv
+│       ├── LOC_A101.csv
+│       └── PX_CAT_G1V2.csv
+│
+├── scripts/
+│   ├── bronze/
+│   │   ├── ddl_bronze.sql
+│   │   └── load_bronze.sql
+│   │
+│   ├── silver/
+│   │   ├── ddl_silver.sql
+│   │   └── load_silver.sql
+│   │
+│   └── quality_checks/
+│       └── quality_checks.sql
+│
+└── README.md
+
+## Next Steps
+
+Build the Gold layer with business-ready fact and dimension tables, followed by analytical queries and Power BI dashboards.
