@@ -18,6 +18,7 @@ Cleaned & Transformed
         ↓
    Analytics / BI
 
+
 What Has Been Built
 Bronze Layer
 Created Bronze schema and source tables for CRM and ERP data.
