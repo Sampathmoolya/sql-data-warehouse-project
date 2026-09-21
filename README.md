@@ -54,7 +54,7 @@ A hands-on **Data Engineering project** built with **Microsoft SQL Server** to i
 
 ## Technologies
 
-**Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · CTEs · Window Functions · CASE · COALESCE · Star Schema**
+**Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · CTEs · Window Functions · Joins · Data Cleaning & Transformation · Data Quality · Dimensional Modeling · Star Schema · SQL Analytics**
 
 ## Project Structure
 
