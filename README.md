@@ -5,135 +5,68 @@ A hands-on **Data Engineering project** built with **Microsoft SQL Server** to i
 ## Architecture
 <img width="781" height="528" alt="Image" src="https://github.com/user-attachments/assets/966b9333-95a3-40a7-b7d4-f501cf9327eb" />
 
+**CRM / ERP → Bronze → Silver → Gold → SQL Analysis**
 
-
-**CRM / ERP CSV Files → Bronze → Silver → Gold → BI & Reporting**
-
-- **Bronze:** Raw source data stored in tables with no transformations.
-- **Silver:** Cleansed, standardized, normalized, and enriched data.
-- **Gold:** Business-ready views integrating dimensions and facts using business logic and aggregations.
-- **Consumption:** BI & Reporting, Ad-Hoc SQL Queries, and Machine Learning.
+- **Bronze:** Raw source data and ingestion.
+- **Silver:** Data cleansing, standardization, and transformation.
+- **Gold:** Business-ready views using a Star Schema.
+- **Analysis:** SQL-based business analysis and insights.
 
 ## What Has Been Built
 
 ### Bronze Layer
-
-- Created separate `bronze` schema and source tables for CRM and ERP data.
-- Loaded CSV files using `BULK INSERT`.
-- Implemented full-refresh loading using `TRUNCATE` + `INSERT`.
-- Built reusable `bronze.load_bronze` stored procedure.
-- Added batch-level and table-level execution time tracking.
-- Implemented `TRY...CATCH` error handling.
+- CRM and ERP source tables
+- CSV ingestion using `BULK INSERT`
+- Full-refresh loading with `TRUNCATE`
+- `bronze.load_bronze` stored procedure
+- Execution time tracking
+- `TRY...CATCH` error handling
 
 ### Silver Layer
-
-- Created `silver` schema and cleaned tables.
-- Built reusable `silver.load_silver` stored procedure.
-- Removed duplicate records using `ROW_NUMBER()`.
-- Trimmed unwanted spaces and standardized categorical values.
-- Handled NULL, invalid, negative, and inconsistent values.
-- Converted `YYYYMMDD` source values into proper `DATE` fields.
-- Validated sales, quantity, and price relationships.
-- Derived product `end_date` using `LEAD()`.
-- Applied data cleansing, normalization, and enrichment rules.
+- Data cleansing and standardization
+- Duplicate removal using `ROW_NUMBER()`
+- NULL and invalid-value handling
+- Date conversion and validation
+- Sales, quantity, and price validation
+- Product validity periods using `LEAD()`
+- `silver.load_silver` stored procedure
 
 ### Gold Layer
+- `gold.dim_customers`
+- `gold.dim_products`
+- `gold.fact_sales`
+- Star Schema with surrogate keys
+- Business logic and data integration
 
-Built a business-ready **Star Schema** using:
-
-**Dimension Views**
-- `gold.dim_customers` — customer, demographic, and geographic attributes.
-- `gold.dim_products` — product, category, subcategory, cost, and product-line attributes.
-
-**Fact View**
-- `gold.fact_sales` — sales transactions with order, customer, product, quantity, price, and sales amount.
-
-The Gold layer integrates Silver data using joins, surrogate keys, business logic, and aggregations to support analytical workloads.
-
-### Data Quality & Validation
-
-Implemented quality checks across the warehouse for:
-
-- NULL and duplicate key detection
-- Duplicate record detection
-- Unwanted spaces
+### Data Quality
+- Duplicate and NULL checks
 - Data standardization
-- Invalid and negative numeric values
-- Invalid date ranges
+- Invalid numeric and date checks
 - Sales = Quantity × Price validation
 - Surrogate-key uniqueness
-- Fact-to-dimension referential integrity
+- Fact-to-dimension integrity checks
 
-## Data Model
+### SQL Analysis
+- Sales and revenue analysis
+- Customer analysis
+- Product performance
+- KPIs and business insights
 
-The Gold layer follows a **Star Schema**:
-
-```text
-             gold.dim_customers
-                    |
-              customer_key
-                    |
-                    ↓
-             gold.fact_sales
-                    ↑
-               product_key
-                    |
-                    |
-             gold.dim_products
-```
-
-## Data Model
-
-The warehouse integrates data from:
-
-### CRM
-
-- Customer information
-- Product information
-- Sales transactions
-
-### ERP
-
-- Customer demographic information
-- Customer location information
-- Product category information
-  
 ## Technologies
 
-Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · CTEs · Window Functions · CASE · COALESCE · Star Schema · Data Quality Checks
+**Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · CTEs · Window Functions · CASE · COALESCE · Star Schema**
 
 ## Project Structure
 
-```
+```text
 sql-data-warehouse-project/
 │
 ├── datasets/
-│   └── placeholder
-│
 ├── docs/
-│   ├── data_catalog.md
-│   └── placeholder
-│
+├── images/
 ├── script/
-│   ├── Gold/
-│   │   └── ddl_gold.sql
-│   │
-│   ├── Silver/
-│   │   ├── ddl_silver.sql
-│   │   ├── proc_load_silver.sql
-│   │   └── quality_checks_silver.sql
-│   │
-│   ├── bronze/
-│   │   ├── ddl_bronze.sql
-│   │   └── proc_load_bronze.sql
-│   │
-│   └── init_database.sql
-│
+├── sql_analysis/
 ├── tests/
-│   ├── quality_checks_gold.sql
-│   └── quality_checks_silver.sql
-│
 ├── LICENSE
 └── README.md
-
 ```
