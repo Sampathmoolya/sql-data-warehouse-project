@@ -3,7 +3,7 @@
 A hands-on **Data Engineering project** built with **Microsoft SQL Server** to integrate raw CRM and ERP data into a clean, standardized, and business-ready analytical data warehouse using a **Bronze → Silver → Gold** architecture.
 
 ## Architecture
-<img width="781" height="528" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/e9ff592d-fc5f-4dfe-b9ab-2eef08d9d5b6" />
+<img width="781" height="528" alt="Image" src="https://github.com/user-attachments/assets/966b9333-95a3-40a7-b7d4-f501cf9327eb" />
 
 
 
