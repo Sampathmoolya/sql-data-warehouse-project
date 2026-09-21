@@ -47,11 +47,16 @@ A hands-on **Data Engineering project** built with **Microsoft SQL Server** to i
 - Fact-to-dimension integrity checks
 
 ### SQL Analysis
-- Sales and revenue analysis
-- Customer analysis
-- Product performance
-- KPIs and business insights
-
+Performed structured SQL analysis across:
+- Schema and dimension exploration
+- Measures and date analysis
+- Magnitude and ranking analysis
+- Change-over-time and cumulative analysis
+- Performance analysis
+- Partition-based analysis
+- Customer and product segmentation
+- Customer and product reporting views
+  
 ## Technologies
 
 **Microsoft SQL Server · T-SQL · SSMS · BULK INSERT · Stored Procedures · CTEs · Window Functions · Joins · Data Cleaning & Transformation · Data Quality · Dimensional Modeling · Star Schema · SQL Analytics**
